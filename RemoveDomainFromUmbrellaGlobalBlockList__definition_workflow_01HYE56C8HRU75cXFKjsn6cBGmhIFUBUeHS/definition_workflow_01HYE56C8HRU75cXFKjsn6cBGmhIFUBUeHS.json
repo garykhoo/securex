@@ -1,0 +1,589 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS",
+    "name": "Cisco Umbrella - Remove domains from Global Block List",
+    "title": "Cisco Umbrella - Remove domains from Global Block List",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "data",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01HYGX6W1VKLM6tMQaO9p2sCrzb0FOIEyhF",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "5295573",
+          "scope": "local",
+          "name": "organization_id",
+          "type": "datatype.string",
+          "description": "UBC test environment Umbrella organization ID",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01HYEPAAJSK7D1NdNd1yGVsdM27OMFnhn06",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "observable_value",
+          "type": "datatype.string",
+          "description": "The domain that you want to remove from the Global Block List",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01HYE5RKD0C871mPNqUiLMhSmOlPgSpqsHE",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 1,
+          "scope": "local",
+          "name": "page_counter",
+          "type": "datatype.integer",
+          "description": "Used to track number pages returned by a query",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01HYGR6I3FRYF7gbuT1AJ5D4NGkMKTgRpf3",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "observable_type",
+          "type": "datatype.string",
+          "description": "Should be set to domain by the calling workflow",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01M1H4CP34FSW13s55nZ4LVnIWW1bTvPEhy",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "domain_id",
+          "type": "datatype.string",
+          "description": "ID of the domain on the Global Block List",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01HYH2FAJAVK7086OyPNkPe3tI7XF11hK0F",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "9759359",
+          "scope": "local",
+          "name": "destination_list_id",
+          "type": "datatype.string",
+          "description": "UBC test environment Global Block List ID",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01HYEP05IMVKE2jNJXhsDtjXet6QNxeXrIQ",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco APIs",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Cisco Umbrella - Remove domains from Global Block List",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01M1HBCRCU51K2gNSfVtf4Fh0JWlRLw5PBR",
+        "name": "Condition Block",
+        "title": "Is observable_type a domain?",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Is observable_type a domain?",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01M1HBDBG8V0Y1P0ueTGsVgNYn65WR728xY",
+            "name": "Condition Branch",
+            "title": "No",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.input.variable_workflow_01M1H4CP34FSW13s55nZ4LVnIWW1bTvPEhy$",
+                "operator": "ne",
+                "right_operand": "domain"
+              },
+              "continue_on_failure": false,
+              "display_name": "No",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01M1HCKT9FKF77PQGjncT3EvjHLTS3je5Lt",
+                "name": "Completed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "continue_on_failure": false,
+                  "display_name": "Completed",
+                  "result_message": "Unsupported observable type",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01LS59L6AWU4D6dJh9L7kIiUBJctjhPzKYN",
+        "name": "HTTP Request",
+        "title": "Get Global Block List properties",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Get Global Block List properties",
+          "method": "GET",
+          "relative_url": "/v1/organizations/$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.local.variable_workflow_01HYEPAAJSK7D1NdNd1yGVsdM27OMFnhn06$/destinationlists/$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.local.variable_workflow_01HYEP05IMVKE2jNJXhsDtjXet6QNxeXrIQ$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01HXGDE2BELWI6t4yHi47i6Fu5iNNQyfTNS"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01LS5BKU6CS1P5xGkcNR3alm7ZTat6DrdkP",
+        "name": "JSONPath Query",
+        "title": "Get number of domains in destionation list",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Get number of domains in destionation list",
+          "input_json": "$activity.definition_activity_01LS59L6AWU4D6dJh9L7kIiUBJctjhPzKYN.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.data.meta.destinationCount",
+              "jsonpath_query_name": "destinationCount",
+              "jsonpath_query_type": "integer"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01LS5G57ILD9C3gcjviuqFC0joOZUO6kkRa",
+        "name": "Condition Block",
+        "title": "Is the Global Block List empty?",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Is the Global Block List empty?",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01LS5G675EPKQ7XISOwBmeWqgbawFgs7z0C",
+            "name": "Condition Branch",
+            "title": "No",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01LS5BKU6CS1P5xGkcNR3alm7ZTat6DrdkP.output.jsonpath_queries.destinationCount$",
+                "operator": "ne",
+                "right_operand": 0
+              },
+              "continue_on_failure": false,
+              "display_name": "No",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01HYH0ECRX62N6tNxCTcIJSU8jLbHNagmsZ",
+                "name": "Set Variables",
+                "title": "Reset page counter and domain_id variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Reset page counter and domain_id variables",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.local.variable_workflow_01HYGR6I3FRYF7gbuT1AJ5D4NGkMKTgRpf3$",
+                      "variable_value_new": 1
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.local.variable_workflow_01HYH2FAJAVK7086OyPNkPe3tI7XF11hK0F$",
+                      "variable_value_new": "-1"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01HYH2KTV2LDY0XczfRfEBAyyy4boTFJAWR",
+                "name": "While Loop",
+                "title": "While Loop",
+                "type": "logic.while",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "While Loop",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01HYH2L0BH3WX5BHL54vqqkayAaysHvxjdp",
+                    "name": "Condition Branch",
+                    "title": "while domain_id == -1",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.local.variable_workflow_01HYH2FAJAVK7086OyPNkPe3tI7XF11hK0F$",
+                        "operator": "eq",
+                        "right_operand": "-1"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "while domain_id == -1",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01HYG6ZV9GSVV7arzVLOET2sFh7hiBrCfKC",
+                        "name": "HTTP Request",
+                        "title": "Get a page of domains from the Global Block List",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "display_name": "Get a page of domains from the Global Block List",
+                          "method": "GET",
+                          "relative_url": "/v1/organizations/$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.local.variable_workflow_01HYEPAAJSK7D1NdNd1yGVsdM27OMFnhn06$/destinationlists/$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.local.variable_workflow_01HYEP05IMVKE2jNJXhsDtjXet6QNxeXrIQ$/destinations?page=$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.local.variable_workflow_01HYGR6I3FRYF7gbuT1AJ5D4NGkMKTgRpf3$",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "override_workflow_target": true,
+                            "target_id": "definition_target_01HXGDE2BELWI6t4yHi47i6Fu5iNNQyfTNS"
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01HYGE3AFJK0D1SKy8jFVmMTXLUeZqatEZF",
+                        "name": "JSONPath Query",
+                        "title": "Check if the domain is in the current page of results",
+                        "type": "corejava.jsonpathquery",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "continue_on_failure": true,
+                          "display_name": "Check if the domain is in the current page of results",
+                          "input_json": "$activity.definition_activity_01HYG6ZV9GSVV7arzVLOET2sFh7hiBrCfKC.output.response_body$",
+                          "jsonpath_queries": [
+                            {
+                              "jsonpath_query": "$..data[?(@.destination=='$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.input.variable_workflow_01HYE5RKD0C871mPNqUiLMhSmOlPgSpqsHE$')].id",
+                              "jsonpath_query_name": "id",
+                              "jsonpath_query_type": "integer"
+                            }
+                          ],
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01HYHHN7Q3BNP57mcUszAxbPmVySZjK4RI6",
+                        "name": "Condition Block",
+                        "title": "Condition Block",
+                        "type": "logic.if_else",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Condition Block",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity",
+                        "blocks": [
+                          {
+                            "unique_name": "definition_activity_01HYHHNE70WUU6ZWi8EWfDE3dII98EFcXIB",
+                            "name": "Condition Branch",
+                            "title": "If domain is present",
+                            "type": "logic.condition_block",
+                            "base_type": "activity",
+                            "properties": {
+                              "condition": {
+                                "left_operand": "$activity.definition_activity_01HYGE3AFJK0D1SKy8jFVmMTXLUeZqatEZF.output.succeeded$",
+                                "operator": "eq",
+                                "right_operand": true
+                              },
+                              "continue_on_failure": false,
+                              "display_name": "If domain is present",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "actions": [
+                              {
+                                "unique_name": "definition_activity_01HYHD4PZVSEY3m0LqvXyWngqVHaXySzz4m",
+                                "name": "Set Variables",
+                                "title": "Set domain_id and exit the while loop",
+                                "type": "core.set_multiple_variables",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "display_name": "Set domain_id and exit the while loop",
+                                  "skip_execution": false,
+                                  "variables_to_update": [
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.local.variable_workflow_01HYH2FAJAVK7086OyPNkPe3tI7XF11hK0F$",
+                                      "variable_value_new": "$activity.definition_activity_01HYGE3AFJK0D1SKy8jFVmMTXLUeZqatEZF.output.jsonpath_queries.id$"
+                                    }
+                                  ]
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_01HYE8738MK103yHfomOmBcAMuWM7sVu6TU",
+                                "name": "HTTP Request",
+                                "title": "Remove domain from the Global Block List using the ID",
+                                "type": "web-service.http_request",
+                                "base_type": "activity",
+                                "properties": {
+                                  "action_timeout": 180,
+                                  "allow_auto_redirect": true,
+                                  "body": "[$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.local.variable_workflow_01HYH2FAJAVK7086OyPNkPe3tI7XF11hK0F$]",
+                                  "content_type": "application/json",
+                                  "continue_on_error_status_code": false,
+                                  "continue_on_failure": false,
+                                  "display_name": "Remove domain from the Global Block List using the ID",
+                                  "method": "DELETE",
+                                  "relative_url": "/v1/organizations/$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.local.variable_workflow_01HYEPAAJSK7D1NdNd1yGVsdM27OMFnhn06$/destinationlists/$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.local.variable_workflow_01HYEP05IMVKE2jNJXhsDtjXet6QNxeXrIQ$/destinations/remove",
+                                  "runtime_user": {
+                                    "override_target_runtime_user": false,
+                                    "target_default": true
+                                  },
+                                  "skip_execution": false,
+                                  "target": {
+                                    "override_workflow_target": true,
+                                    "target_id": "definition_target_01HXGDE2BELWI6t4yHi47i6Fu5iNNQyfTNS"
+                                  }
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_01M1HJ8QX44U90dzdyFjts2gh1NDPBfj6QX",
+                                "name": "Completed",
+                                "title": "Completed",
+                                "type": "logic.completed",
+                                "base_type": "activity",
+                                "properties": {
+                                  "completion_type": "succeeded",
+                                  "continue_on_failure": false,
+                                  "display_name": "Completed",
+                                  "result_message": "Domain removed from Global Block List",
+                                  "skip_execution": false
+                                },
+                                "object_type": "definition_activity"
+                              }
+                            ]
+                          },
+                          {
+                            "unique_name": "definition_activity_01HYHHNFHJPOW03GDZs8oUvXx6fxXSmCrOe",
+                            "name": "Condition Branch",
+                            "title": "If domain is not present",
+                            "type": "logic.condition_block",
+                            "base_type": "activity",
+                            "properties": {
+                              "condition": {
+                                "left_operand": "$activity.definition_activity_01HYGE3AFJK0D1SKy8jFVmMTXLUeZqatEZF.output.succeeded$",
+                                "operator": "eq",
+                                "right_operand": false
+                              },
+                              "continue_on_failure": false,
+                              "display_name": "If domain is not present",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "actions": [
+                              {
+                                "unique_name": "definition_activity_01HYHJBPL9STF037dTzG8FSQ0NQJAYSlkh5",
+                                "name": "Set Variables",
+                                "title": "Increment page counter",
+                                "type": "core.set_multiple_variables",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "display_name": "Increment page counter",
+                                  "skip_execution": false,
+                                  "variables_to_update": [
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.local.variable_workflow_01HYGR6I3FRYF7gbuT1AJ5D4NGkMKTgRpf3$",
+                                      "variable_value_new": "$workflow.definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS.local.variable_workflow_01HYGR6I3FRYF7gbuT1AJ5D4NGkMKTgRpf3$+1"
+                                    }
+                                  ]
+                                },
+                                "object_type": "definition_activity"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01LS5G685ZI9877Pv0jfEyjb2nyzq3t4D1Z",
+            "name": "Condition Branch",
+            "title": "Yes",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01LS5BKU6CS1P5xGkcNR3alm7ZTat6DrdkP.output.jsonpath_queries.destinationCount$",
+                "operator": "eq",
+                "right_operand": 0
+              },
+              "continue_on_failure": false,
+              "display_name": "Yes",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01M1H1V6VYJMT758BM7Ll0bIKUvy0oD0EEI",
+                "name": "Completed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "continue_on_failure": false,
+                  "display_name": "Completed",
+                  "result_message": "The Global Block List is empty so there is nothing to remove",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m"
+    ]
+  },
+  "categories": {
+    "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m": {
+      "unique_name": "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m",
+      "name": "response",
+      "title": "response",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_01HXGDE2BELWI6t4yHi47i6Fu5iNNQyfTNS": {
+      "unique_name": "definition_target_01HXGDE2BELWI6t4yHi47i6Fu5iNNQyfTNS",
+      "name": "Cisco Umbrella",
+      "title": "Cisco Umbrella",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01HXGCNCH07A05Al5JG0XBtQg1t6Pml0Qu9",
+        "disable_certificate_validation": false,
+        "display_name": "Cisco Umbrella",
+        "host": "management.api.umbrella.com",
+        "ignore_proxy": false,
+        "no_runtime_user": false,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01HXGCNCH07A05Al5JG0XBtQg1t6Pml0Qu9": {
+      "unique_name": "definition_runtime_user_01HXGCNCH07A05Al5JG0XBtQg1t6Pml0Qu9",
+      "name": "Cisco Umbrella Management API Key",
+      "title": "Cisco Umbrella Management API Key",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "*****",
+        "basic_password": "*****",
+        "basic_username": "*****",
+        "display_name": "Cisco Umbrella Management API Key"
+      }
+    }
+  }
+}
