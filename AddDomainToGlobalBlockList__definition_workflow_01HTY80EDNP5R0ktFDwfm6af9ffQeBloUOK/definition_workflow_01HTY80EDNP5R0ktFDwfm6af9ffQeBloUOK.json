@@ -1,8 +1,8 @@
 {
   "workflow": {
     "unique_name": "definition_workflow_01HTY80EDNP5R0ktFDwfm6af9ffQeBloUOK",
-    "name": "Cisco Umbrella - Add domain to Global Block List",
-    "title": "Cisco Umbrella - Add domain to Global Block List",
+    "name": "[UBC TEST] Umbrella - Add domain to Global Block List",
+    "title": "[UBC TEST] Umbrella - Add domain to Global Block List",
     "type": "generic.workflow",
     "base_type": "workflow",
     "variables": [
@@ -23,20 +23,6 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "9759359",
-          "scope": "local",
-          "name": "destination_list_id",
-          "type": "datatype.string",
-          "description": "ID of the UBC Global Block List in Umbrella",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01HXM91UVZ4CR2dk87gD66HLyZb6WajclT1",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
           "value": "",
           "scope": "input",
           "name": "observable_type",
@@ -46,6 +32,20 @@
           "is_invisible": false
         },
         "unique_name": "variable_workflow_01M1LO3SJ100F5LyY62MSidgkrOir3iMSmL",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "9759359",
+          "scope": "local",
+          "name": "destination_list_id",
+          "type": "datatype.string",
+          "description": "ID of the UBC Global Block List in Umbrella",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01HXM91UVZ4CR2dk87gD66HLyZb6WajclT1",
         "object_type": "variable_workflow"
       },
       {
@@ -69,7 +69,8 @@
         "is_atomic": true
       },
       "delete_workflow_instance": false,
-      "display_name": "Cisco Umbrella - Add domain to Global Block List",
+      "description": "[Add domain to Global Block List]\n[Supported observable: domain]\n\nWorkflow Description:\nWhen triggered, this workflow will submit a domain to the UBC's Umbrella Global Block List.\n\nWorkflow Requirements:\nThis workflow requires access to a Cisco Umbrella Management API key to update the Global Block List. Please verify this setting prior to execution.",
+      "display_name": "[UBC TEST] Umbrella - Add domain to Global Block List",
       "runtime_user": {
         "override_target_runtime_user": false,
         "specify_on_workflow_start": false,
@@ -178,7 +179,8 @@
       }
     ],
     "categories": [
-      "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m"
+      "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m",
+      "category_01M1MD37XSY1N7FvWAFLjRx0kjLHEPOk8Ee"
     ]
   },
   "categories": {
@@ -186,6 +188,15 @@
       "unique_name": "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m",
       "name": "response",
       "title": "response",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_01M1MD37XSY1N7FvWAFLjRx0kjLHEPOk8Ee": {
+      "unique_name": "category_01M1MD37XSY1N7FvWAFLjRx0kjLHEPOk8Ee",
+      "name": "Umbrella",
+      "title": "Umbrella",
       "type": "basic.category",
       "base_type": "category",
       "category_type": "custom",
