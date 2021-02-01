@@ -1,11 +1,52 @@
 {
   "workflow": {
     "unique_name": "definition_workflow_01HYE56C8HRU75cXFKjsn6cBGmhIFUBUeHS",
-    "name": "Cisco Umbrella - Remove domain from Global Block List",
-    "title": "Cisco Umbrella - Remove domain from Global Block List",
+    "name": "[UBC TEST] Remove domain from Global Block List",
+    "title": "[UBC TEST] Remove domain from Global Block List",
     "type": "generic.workflow",
     "base_type": "workflow",
     "variables": [
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "local",
+          "name": "pages_total",
+          "type": "datatype.integer",
+          "description": "Total number of result pages we have to search in the Global Block List",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01M1KHMFAW6AF5Gnyw1BCBeq75kUGJXfDCG",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "data",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01HYGX6W1VKLM6tMQaO9p2sCrzb0FOIEyhF",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "observable_value",
+          "type": "datatype.string",
+          "description": "The domain that you want to remove from the Global Block List",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01HYE5RKD0C871mPNqUiLMhSmOlPgSpqsHE",
+        "object_type": "variable_workflow"
+      },
       {
         "schema_id": "datatype.integer",
         "properties": {
@@ -24,14 +65,14 @@
         "schema_id": "datatype.string",
         "properties": {
           "value": "",
-          "scope": "input",
-          "name": "observable_value",
+          "scope": "local",
+          "name": "domain_id",
           "type": "datatype.string",
-          "description": "The domain that you want to remove from the Global Block List",
-          "is_required": true,
+          "description": "ID of the domain on the Global Block List",
+          "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01HYE5RKD0C871mPNqUiLMhSmOlPgSpqsHE",
+        "unique_name": "variable_workflow_01HYH2FAJAVK7086OyPNkPe3tI7XF11hK0F",
         "object_type": "variable_workflow"
       },
       {
@@ -46,19 +87,6 @@
           "is_invisible": false
         },
         "unique_name": "variable_workflow_01HYEP05IMVKE2jNJXhsDtjXet6QNxeXrIQ",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "data",
-          "type": "datatype.string",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01HYGX6W1VKLM6tMQaO9p2sCrzb0FOIEyhF",
         "object_type": "variable_workflow"
       },
       {
@@ -95,39 +123,11 @@
           "scope": "input",
           "name": "observable_type",
           "type": "datatype.string",
-          "description": "Should be set to domain by the calling workflow",
+          "description": "Should be set to \"domain\" by the calling workflow",
           "is_required": true,
           "is_invisible": false
         },
         "unique_name": "variable_workflow_01M1H4CP34FSW13s55nZ4LVnIWW1bTvPEhy",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "domain_id",
-          "type": "datatype.string",
-          "description": "ID of the domain on the Global Block List",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01HYH2FAJAVK7086OyPNkPe3tI7XF11hK0F",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.integer",
-        "properties": {
-          "value": 0,
-          "scope": "local",
-          "name": "pages_total",
-          "type": "datatype.integer",
-          "description": "Total number of result pages we have to search in the Global Block List",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01M1KHMFAW6AF5Gnyw1BCBeq75kUGJXfDCG",
         "object_type": "variable_workflow"
       }
     ],
@@ -137,7 +137,8 @@
         "is_atomic": true
       },
       "delete_workflow_instance": false,
-      "display_name": "Cisco Umbrella - Remove domain from Global Block List",
+      "description": "[Remove domain from Global Block List]\n[Supported observable: domain]\n\nWorkflow Description:\nWhen triggered, this workflow will remove a domain from the Umbrella Global Block List.\n\nWorkflow Requirements:\nThis workflow requires access to a Cisco Umbrella Management API key to update the Global Block List. Please verify this setting prior to execution.",
+      "display_name": "[UBC TEST] Remove domain from Global Block List",
       "runtime_user": {
         "override_target_runtime_user": false,
         "specify_on_workflow_start": false,
